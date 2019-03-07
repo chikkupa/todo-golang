@@ -22,6 +22,45 @@ func GetTodos() []Todo {
 	return todos
 }
 
+// GetTodo to get a todo
+func GetTodo(id int) Todo {
+	var todo Todo
+
+	for i := 0; i < len(todos); i++ {
+		if todos[i].ID == id {
+			return todos[i]
+		}
+	}
+
+	return todo
+}
+
+// UpdateTodo Update todo
+func UpdateTodo(id int, todo Todo) Todo {
+	for i := 0; i < len(todos); i++ {
+		if todos[i].ID == id {
+			todos[i].Title = todo.Title
+			todos[i].Status = todo.Status
+		}
+	}
+
+	return todo
+}
+
+// DeleteTodo Delete a todo from list
+func DeleteTodo(id int) Todo {
+	var todo Todo
+
+	for i := 0; i < len(todos); i++ {
+		if todos[i].ID == id {
+			todo = todos[i]
+			todos = append(todos[:i], todos[i+1:]...)
+		}
+	}
+
+	return todo
+}
+
 // To generate next index value
 func getNextIndex() int {
 	index++
